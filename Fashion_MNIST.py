@@ -13,17 +13,17 @@ fashion_mnist_labels = ["T-shirt/top","Trouser","Pullover","Dress","Coat",
 x_train = x_train / 255.0
 x_test = x_test / 255.0
 
-#레이어 설정
+#레이어 설정(크기 28, 28, relu Activation)
 model = keras.Sequential([
     keras.layers.Flatten(input_shape=(28, 28)),
     keras.layers.Dense(128, activation=tf.nn.relu),
     keras.layers.Dense(10, activation=tf.nn.softmax)])
 
-#컴파일
+#컴파일(Adam Optimizer, Cross Entropy)
 model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
 
-#훈련
-model.fit(x_train, y_train, batch_size=64,epochs=10)
+#훈련 (배치사이즈 64, 에포크 10)
+model.fit(x_train, y_train,batch_size=64,epochs=10)
 
 # 테스트 셋을 통해 모델 평가 및 정확도
 score = model.evaluate(x_test, y_test, verbose=0)
